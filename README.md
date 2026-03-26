@@ -25,13 +25,23 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+**Game purpose:** A number guessing game where the player tries to guess a secret number within a limited number of attempts, with hints guiding them higher or lower.
+
+**Bugs found:**
+- Hints were backwards — "Go Higher" showed when the guess was too high, and vice versa
+- Difficulty ranges didn't match their labels (Easy, Normal, Hard were not in ascending order)
+- On even-numbered attempts, the secret number was cast to a string, making correct guesses impossible to match
+- The "New Game" button didn't reset attempts properly
+
+**Fixes applied:**
+- Swapped the "Go Higher" / "Go Lower" hint messages so they match the correct direction
+- Corrected the number ranges for each difficulty level
+- Removed the int/string alternating logic so the secret is always compared as an integer
+- Fixed the New Game button to properly reset game state
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+![Fixed winning game screenshot](SS1.png)
 
 ## 🚀 Stretch Features
 
