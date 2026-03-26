@@ -1,14 +1,17 @@
 import random
 import streamlit as st
 
-def get_range_for_difficulty(difficulty: str):
+
+# FIXME: The difficulty modes dont make sense with their range of guesses. 
+def get_range_for_difficulty(difficulty: str): 
     if difficulty == "Easy":
         return 1, 20
     if difficulty == "Normal":
-        return 1, 100
-    if difficulty == "Hard":
         return 1, 50
+    if difficulty == "Hard":
+        return 1, 100
     return 1, 100
+#FIX: I told the AI to change the values to match their corresponding difficulty.
 
 
 def parse_guess(raw: str):
@@ -28,23 +31,24 @@ def parse_guess(raw: str):
 
     return True, value, None
 
-
-def check_guess(guess, secret):
+# FIXME: Opposite hints
+def check_guess(guess, secret): 
     if guess == secret:
         return "Win", "🎉 Correct!"
 
     try:
         if guess > secret:
-            return "Too High", "📈 Go HIGHER!"
+            return "Too High", "📈 Go LOWER!"
         else:
-            return "Too Low", "📉 Go LOWER!"
+            return "Too Low", "📉 Go HIGHER!"
     except TypeError:
         g = str(guess)
         if g == secret:
             return "Win", "🎉 Correct!"
         if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
+            return "Too High", "📈 Go LOWER!"
+        return "Too Low", "📉 Go HIGHER!"
+#FIX: Told the AI, "When the guess is too high, the computer says to 'Go Lower' and vice versa.""
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
@@ -107,7 +111,7 @@ if "history" not in st.session_state:
 st.subheader("Make a guess")
 
 st.info(
-    f"Guess a number between 1 and 100. "
+    f"Guess a number between {low} and {high}. "
     f"Attempts left: {attempt_limit - st.session_state.attempts}"
 )
 
